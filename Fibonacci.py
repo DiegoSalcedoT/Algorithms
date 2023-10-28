@@ -1,5 +1,5 @@
 # define the fibonacci() function below...
-mem = {}
+mem = {} # Memoization
 def fibonacci(n):
   if n in mem:
     return mem[n]
