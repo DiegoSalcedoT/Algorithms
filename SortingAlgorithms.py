@@ -38,6 +38,48 @@ ordered_list1 = merge_sort(unordered_list1)
 ordered_list2 = merge_sort(unordered_list2)
 ordered_list3 = merge_sort(unordered_list3)
 
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# Quicksort
+from random import randrange, shuffle 
+def quicksort(list, start, end):
+  # this portion of listay has been sorted
+  if start >= end:
+    return
+
+  # select random element to be pivot
+  pivot_idx = randrange(start, end + 1)
+  pivot_element = list[pivot_idx]
+  print(pivot_element)
+  # swap random element with last element in sub-listay
+  list[end], list[pivot_idx] = list[pivot_idx], list[end]
+  print('swaped pivot:', list)
+  # tracks all elements which should be to left (lesser than) pivot
+  less_than_pointer = start
+  
+  for i in range(start, end):
+    # we found an element out of place
+    if list[i] < pivot_element:
+      # swap element to the right-most portion of lesser elements
+      list[i], list[less_than_pointer] = list[less_than_pointer], list[i]
+      # tally that we have one more lesser element
+      less_than_pointer += 1
+  # move pivot element to the right-most portion of lesser elements
+  list[end], list[less_than_pointer] = list[less_than_pointer], list[end]
+  print(list)
+  # Call quicksort on the "left" and "right" sub-lists
+  quicksort(list, start, less_than_pointer - 1)
+  quicksort(list, less_than_pointer + 1, end)
+
+  return list
+
+  
+unsorted_list = [3,7,12,24,36,42,1,5,100,94,11]
+shuffle(unsorted_list)
+print('Unsorted:', unsorted_list)
+# use quicksort to sort the list, then print it out!
+sorted_list = quicksort(unsorted_list, 0, len(unsorted_list) - 1)
+print('Sorted:', sorted_list)
+
 print(ordered_list1)
 print(ordered_list2)
 print(ordered_list3)
