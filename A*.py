@@ -6,7 +6,8 @@ from manhattan_graph import manhattan_graph, penn_station, grand_central_station
 def heuristic(start, target):
   x_distance = abs(start.position[0] - target.position[0])
   y_distance = abs(start.position[1] - target.position[1])
-  return x_distance + y_distance
+  #return x_distance + y_distance
+  return sqrt(x_distance**2 + y_distance**2)
 
 def a_star(graph, start, target):
   print("Starting A* algorithm!")
@@ -36,4 +37,5 @@ def a_star(graph, start, target):
 
 # Call a_star() on manhattan_graph to find the best route
 # from penn_station to grand_central_station:
-print(a_star(manhattan_graph, penn_station, grand_central_station))
+#print(a_star(manhattan_graph, penn_station, grand_central_station))
+print(a_star(euclidean_graph, jaipur, bengaluru))
